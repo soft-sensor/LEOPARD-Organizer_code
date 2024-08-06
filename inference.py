@@ -21,8 +21,9 @@ from pathlib import Path
 import os
 import json
 from glob import glob
-import SimpleITK
+#import SimpleITK
 import numpy
+import tiffslide
 
 INPUT_PATH = Path("/input")
 OUTPUT_PATH = Path("/output")
@@ -40,10 +41,11 @@ def run():
     input_prostatectomy_tissue_whole_slide_image = load_image_file_as_array(
         location=INPUT_PATH / "images/prostatectomy-wsi",
     )
-
+    print("Slide read and in run",input_prostatectomy_tissue_whole_slide_image )
     input_prostatectomy_tissue_mask = load_image_file_as_array(
         location=INPUT_PATH / "images/prostatectomy-tissue-mask",
     )
+    print("mask read and in run",input_prostatectomy_tissue_mask )
     
     # Process the inputs: any way you'd like
     _show_torch_cuda_info()
@@ -72,10 +74,11 @@ def write_json_file(*, location, content):
 def load_image_file_as_array(*, location):
     # Use SimpleITK to read a file
     input_files = glob(str(location / "*.tiff")) + glob(str(location / "*.mha")) + glob(str(location / "*.tif"))
-    result = SimpleITK.ReadImage(input_files[0])
-
+    #result = SimpleITK.ReadImage(input_files[0])
+    slide = tiffslide.open_slide(input_files[0])
+    w, h = slide.level_dimensions[0]
     # Convert it to a Numpy array
-    return SimpleITK.GetArrayFromImage(result)
+    return str(w) + " " + str(h)
 
 
 def _show_torch_cuda_info():
