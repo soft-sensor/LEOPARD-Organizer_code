@@ -18,6 +18,7 @@ Any container that shows the same behavior will do, this is purely an example of
 Happy programming!
 """
 from pathlib import Path
+import os
 import json
 from glob import glob
 import SimpleITK
@@ -31,6 +32,11 @@ RESOURCE_PATH = Path("resources")
 
 def run():
     # Read the input
+
+    print("paths list",os.listdir(INPUT_PATH))
+    print("paths list images",os.listdir(INPUT_PATH/"images"))
+    print("paths list pwsi",os.listdir(INPUT_PATH/"images/prostatectomy-wsi"))
+    print("paths list pwsi",os.listdir(INPUT_PATH/"images/prostatectomy-tissue-mask"))
     input_prostatectomy_tissue_whole_slide_image = load_image_file_as_array(
         location=INPUT_PATH / "images/prostatectomy-wsi",
     )
