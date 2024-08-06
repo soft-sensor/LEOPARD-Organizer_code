@@ -71,7 +71,7 @@ def write_json_file(*, location, content):
 
 def load_image_file_as_array(*, location):
     # Use SimpleITK to read a file
-    input_files = glob(str(location / "*.tiff")) + glob(str(location / "*.mha"))
+    input_files = glob(str(location / "*.tiff")) + glob(str(location / "*.mha")) + glob(str(location / "*.tif"))
     result = SimpleITK.ReadImage(input_files[0])
 
     # Convert it to a Numpy array
