@@ -25,7 +25,7 @@ from glob import glob
 import numpy
 import tiffslide
 
-INPUT_PATH = Path("/input")
+INPUT_PATH = Path("/input") # test inc
 OUTPUT_PATH = Path("/output")
 RESOURCE_PATH = Path("resources")
 

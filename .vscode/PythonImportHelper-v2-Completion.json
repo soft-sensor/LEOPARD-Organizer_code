@@ -1,0 +1,108 @@
+[
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "glob",
+        "importPath": "glob",
+        "description": "glob",
+        "isExtraImport": true,
+        "detail": "glob",
+        "documentation": {}
+    },
+    {
+        "label": "numpy",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "numpy",
+        "description": "numpy",
+        "detail": "numpy",
+        "documentation": {}
+    },
+    {
+        "label": "tiffslide",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "tiffslide",
+        "description": "tiffslide",
+        "detail": "tiffslide",
+        "documentation": {}
+    },
+    {
+        "label": "run",
+        "kind": 2,
+        "importPath": "inference",
+        "description": "inference",
+        "peekOfCode": "def run():\n    # Read the input\n    print(\"paths list\",os.listdir(INPUT_PATH))\n    print(\"paths list images\",os.listdir(INPUT_PATH/\"images\"))\n    print(\"paths list pwsi\",os.listdir(INPUT_PATH/\"images/prostatectomy-wsi\"))\n    print(\"paths list pwsi\",os.listdir(INPUT_PATH/\"images/prostatectomy-tissue-mask\"))\n    input_prostatectomy_tissue_whole_slide_image = load_image_file_as_array(\n        location=INPUT_PATH / \"images/prostatectomy-wsi\",\n    )\n    print(\"Slide read and in run\",input_prostatectomy_tissue_whole_slide_image )",
+        "detail": "inference",
+        "documentation": {}
+    },
+    {
+        "label": "write_json_file",
+        "kind": 2,
+        "importPath": "inference",
+        "description": "inference",
+        "peekOfCode": "def write_json_file(*, location, content):\n    # Writes a json file\n    with open(location, 'w') as f:\n        f.write(json.dumps(content, indent=4))\ndef load_image_file_as_array(*, location):\n    # Use SimpleITK to read a file\n    input_files = glob(str(location / \"*.tiff\")) + glob(str(location / \"*.mha\")) + glob(str(location / \"*.tif\"))\n    #result = SimpleITK.ReadImage(input_files[0])\n    slide = tiffslide.open_slide(input_files[0])\n    w, h = slide.level_dimensions[0]",
+        "detail": "inference",
+        "documentation": {}
+    },
+    {
+        "label": "load_image_file_as_array",
+        "kind": 2,
+        "importPath": "inference",
+        "description": "inference",
+        "peekOfCode": "def load_image_file_as_array(*, location):\n    # Use SimpleITK to read a file\n    input_files = glob(str(location / \"*.tiff\")) + glob(str(location / \"*.mha\")) + glob(str(location / \"*.tif\"))\n    #result = SimpleITK.ReadImage(input_files[0])\n    slide = tiffslide.open_slide(input_files[0])\n    w, h = slide.level_dimensions[0]\n    # Convert it to a Numpy array\n    return str(w) + \" \" + str(h)\ndef _show_torch_cuda_info():\n    import torch",
+        "detail": "inference",
+        "documentation": {}
+    },
+    {
+        "label": "INPUT_PATH",
+        "kind": 5,
+        "importPath": "inference",
+        "description": "inference",
+        "peekOfCode": "INPUT_PATH = Path(\"/input\") # test inc\nOUTPUT_PATH = Path(\"/output\")\nRESOURCE_PATH = Path(\"resources\")\ndef run():\n    # Read the input\n    print(\"paths list\",os.listdir(INPUT_PATH))\n    print(\"paths list images\",os.listdir(INPUT_PATH/\"images\"))\n    print(\"paths list pwsi\",os.listdir(INPUT_PATH/\"images/prostatectomy-wsi\"))\n    print(\"paths list pwsi\",os.listdir(INPUT_PATH/\"images/prostatectomy-tissue-mask\"))\n    input_prostatectomy_tissue_whole_slide_image = load_image_file_as_array(",
+        "detail": "inference",
+        "documentation": {}
+    },
+    {
+        "label": "OUTPUT_PATH",
+        "kind": 5,
+        "importPath": "inference",
+        "description": "inference",
+        "peekOfCode": "OUTPUT_PATH = Path(\"/output\")\nRESOURCE_PATH = Path(\"resources\")\ndef run():\n    # Read the input\n    print(\"paths list\",os.listdir(INPUT_PATH))\n    print(\"paths list images\",os.listdir(INPUT_PATH/\"images\"))\n    print(\"paths list pwsi\",os.listdir(INPUT_PATH/\"images/prostatectomy-wsi\"))\n    print(\"paths list pwsi\",os.listdir(INPUT_PATH/\"images/prostatectomy-tissue-mask\"))\n    input_prostatectomy_tissue_whole_slide_image = load_image_file_as_array(\n        location=INPUT_PATH / \"images/prostatectomy-wsi\",",
+        "detail": "inference",
+        "documentation": {}
+    },
+    {
+        "label": "RESOURCE_PATH",
+        "kind": 5,
+        "importPath": "inference",
+        "description": "inference",
+        "peekOfCode": "RESOURCE_PATH = Path(\"resources\")\ndef run():\n    # Read the input\n    print(\"paths list\",os.listdir(INPUT_PATH))\n    print(\"paths list images\",os.listdir(INPUT_PATH/\"images\"))\n    print(\"paths list pwsi\",os.listdir(INPUT_PATH/\"images/prostatectomy-wsi\"))\n    print(\"paths list pwsi\",os.listdir(INPUT_PATH/\"images/prostatectomy-tissue-mask\"))\n    input_prostatectomy_tissue_whole_slide_image = load_image_file_as_array(\n        location=INPUT_PATH / \"images/prostatectomy-wsi\",\n    )",
+        "detail": "inference",
+        "documentation": {}
+    }
+]
